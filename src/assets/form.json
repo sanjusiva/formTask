@@ -35,7 +35,7 @@
   ],
   "additionalDetails": [
     {"aadhar":[{
-      "name": "Aadhar number",
+      "name": "aadhar",
       "label": "Aadhar number:",
       "value": "8765432",
       "type": "text",
@@ -44,7 +44,7 @@
       }
     }]},
     {"dl":[{
-      "name": "Driving Liscence",
+      "name": "dl",
       "label": "Driving Liscence:",
       "value": "9321479",
       "type": "text",
@@ -66,7 +66,7 @@
         { "label": "College Id", "value": "clg" }
       ],
       "clg": {
-        "name": "College Id",
+        "name": "clg",
         "label": "College Id:",
         "value": "123",
         "type": "text",
@@ -75,7 +75,7 @@
         }
       },
       "school": {
-        "name": "School Id",
+        "name": "school",
         "label": "School Id:",
         "value": "11",
         "type": "text",

@@ -28,7 +28,7 @@
             <div *ngFor="let ele of control.aadhar">
               <div
                 *ngIf="
-                  ele.name === 'Aadhar number' && selectedValue === 'aadhar'
+                  ele.name === selectedValue
                 "
               >
                 <label>{{
@@ -48,7 +48,7 @@
             <div *ngFor="let ele of control.dl">
               <div
                 *ngIf="
-                  ele.name === 'Driving Liscence' && selectedValue === 'dl'
+                  ele.name ===selectedValue 
                 "
               >
                 <label>{{

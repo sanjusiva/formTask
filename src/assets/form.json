@@ -24,8 +24,8 @@
       ]
     },
     {
-      "name":"Submit",
-      "type":"button"
+      "name": "Submit",
+      "type": "button"
     }
   ],
   "additionalDetails": [
@@ -59,33 +59,25 @@
         { "label": "Select Id", "value": "" },
         { "label": "School Id", "value": "school" },
         { "label": "College Id", "value": "clg" }
-      ]
-    },
-    {
-      "clg":[
-        {
-          "name": "College Id",
-          "label": "College Id:",
-          "value": "",
-          "type": "text",
-          "validators": {
-            "required": true
-          }
-        }
       ],
-      "school":[
-        {
-          "name": "School Id",
-          "label": "School Id:",
-          "value": "",
-          "type": "text",
-          "validators": {
-            "required": true
-          }
+      "clg": {
+        "name": "College Id",
+        "label": "College Id:",
+        "value": "",
+        "type": "text",
+        "validators": {
+          "required": true
         }
-      ]
+      },
+      "school": {
+        "name": "School Id",
+        "label": "School Id:",
+        "value": "",
+        "type": "text",
+        "validators": {
+          "required": true
+        }
+      }
     }
-    
   ]
-  
 }

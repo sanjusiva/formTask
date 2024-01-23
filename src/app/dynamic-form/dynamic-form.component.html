@@ -1,56 +1,92 @@
 <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
-    <div *ngFor="let control of myFormData?.controls">
-      <label>{{ control.label }}</label>
-      <div *ngIf="control.type==='text'">
+  <div *ngFor="let control of myFormData?.controls">
+    <label>{{ control.label }}</label>
+    <div *ngIf="control.type === 'text'">
       <input
         [type]="control.type"
         [formControlName]="control.name"
         [value]="control.value"
+      />
+    </div>
+    <div *ngIf="control.type === 'dropdown'">
+      <select
+        [formControlName]="control.name"
+        (change)="onDropdownChange($event, control.name)"
       >
-      </div>
-      <div *ngIf="control.type === 'dropdown'">
-        <select [formControlName]="control.name" (change)="onDropdownChange($event,control.name)">
-          <option *ngFor="let option of control.options" [value]="option.value">
-            {{ option.label }}
-          </option>
-        </select>
-        <br>
-        <div *ngIf="selectedValue">
-          <div *ngFor="let control of myFormData?.additionalDetails">
-            <div *ngIf="control.name==='Aadhar number' && selectedValue === 'aadhar'">
-            <label>{{ control.label }}</label><br>
-              <input
+        <option *ngFor="let option of control.options" [value]="option.value">
+          {{ option.label }}
+        </option>
+      </select>
+      <br />
+      <div *ngIf="selectedValue">
+        <div *ngFor="let control of myFormData?.additionalDetails">
+          <div
+            *ngIf="
+              control.name === 'Aadhar number' && selectedValue === 'aadhar'
+            "
+          >
+            <label>{{ control.label }}</label
+            ><br />
+            <input
               [type]="control.type"
               [formControlName]="control.name"
               [value]="control.value"
-              >
-            </div>
-            <div *ngIf="control.name==='Driving Liscence' && selectedValue === 'dl'">
-            <label>{{ control.label }}</label><br>
-              <input
+            />
+          </div>
+          <div
+            *ngIf="
+              control.name === 'Driving Liscence' && selectedValue === 'dl'
+            "
+          >
+            <label>{{ control.label }}</label
+            ><br />
+            <input
               [type]="control.type"
               [formControlName]="control.name"
               [value]="control.value"
+            />
+          </div>
+          <div
+            *ngIf="control.name === 'Private Id' && selectedValue === 'others'"
+          >
+            <label>{{ control.label }}</label>
+            <select
+              [formControlName]="control.name"
+              (change)="onOthersDropdownChange($event)"
+            >
+              <option
+                *ngFor="let option of control.options"
+                [value]="option.value"
               >
+                {{ option.label }}
+              </option>
+            </select>
+            <div *ngIf="myForm.value['Private Id'] === 'school'">
+              <label>{{ control.school.name }}</label
+              ><br />
+              <input
+                [type]="control.school.type"
+                [formControlName]="control.school.name"
+                [value]="control.school.value"
+              />
             </div>
-            <div *ngIf="control.name==='Private Id' && selectedValue === 'others'">
-              <label>{{ control.label }}</label>
-              <select [formControlName]="control.name" (change)="onDropdownChange($event,control.name)">
-                <option *ngFor="let option of control.options" [value]="option.value">
-                  {{ option.label }}
-                </option>
-              </select>
-              <!-- <div *ngIf="selectedValue==='Private Id'">
-                sc
-              </div> -->
+            <div *ngIf="myForm.value['Private Id'] === 'clg'">
+              <label>{{ control.clg.name }}</label
+              ><br />
+              <input
+                [type]="control.clg.type"
+                [formControlName]="control.clg.name"
+                [value]="control.clg.value"
+              />
             </div>
           </div>
         </div>
       </div>
-      
-      <br>
-      <div *ngIf="control.type==='button'">
-        <button type="submit">Submit</button>
-      </div>
     </div>
+
+    <br />
+    <div *ngIf="control.type === 'button'">
+      <button type="submit">Submit</button>
+    </div>
+  </div>
 </form>

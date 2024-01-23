@@ -7,7 +7,7 @@ export interface JsonFormConfig {
     value: string;
     type: string;
     options?: any;
-    required: boolean;
+    // required: boolean;
     validators: FormValidators;
   }
 export interface JsonForm {

@@ -37,24 +37,45 @@ export class DynamicFormComponent implements OnChanges {
     for (const ele of controls) {
       console.log('ele: ', ele);
       this.myForm.addControl(ele.name, this.formBuilder.control(ele.value));
+      console.log('Form control added:', ele.name);
     }
+    console.log('Form controls:', this.myForm.controls);
     console.log('f: ', this.myForm);
   }
 
   onDropdownChange(event: any, name: any) {
-    console.log('e: ', event, ' name: ', name);
+    console.log('e: ', event.target.value, ' name: ', name);
     this.selectedValue = event.target.value;
     this.myForm.get(name)?.setValue(this.selectedValue);
-    if (this.selectedValue && name == 'Id Proof') {
-      this.buildForm(this.myFormData?.additionalDetails);
+    console.log('ad: ', this.selectedValue);
+    if (this.selectedValue) {
+      if (this.selectedValue === 'aadhar') {
+        console.log('a: ', this.myFormData.additionalDetails[0]['aadhar']);
+        this.buildForm(this.myFormData.additionalDetails[0]['aadhar']);
+      } else if (this.selectedValue === 'dl') {
+        console.log('d: ', this.myFormData?.additionalDetails[1]['dl']);
+        this.buildForm(this.myFormData?.additionalDetails[1]['dl']);
+      } else if (this.selectedValue === 'others') {
+        console.log('ingaaaaaaaaaaaaaaaaaaa');
+        console.log('other: ', this.myFormData?.additionalDetails[2]);
+        this.buildForm([this.myFormData?.additionalDetails[2]]);
+      } 
       console.log(this.myForm);
     } else {
       this.myForm.removeControl('additionalDetails');
     }
   }
 
-  onOthersDropdownChange(event: any) {
-    console.log('other: ', this.myForm);
+  onOthersDropdownChange(event: any, name: any) {
+    console.log(
+      'other: ',
+      this.myFormData?.additionalDetails[2],
+      ' name: ',
+      name,
+      ' e: ',
+      event.target.value
+    );
+    this.myForm.get(name)?.setValue(event.target.value);
   }
 
   onSubmit() {

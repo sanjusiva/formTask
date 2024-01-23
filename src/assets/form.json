@@ -29,7 +29,7 @@
     }
   ],
   "additionalDetails": [
-    {
+    {"aadhar":[{
       "name": "Aadhar number",
       "label": "Aadhar number:",
       "value": "8765432",
@@ -37,8 +37,8 @@
       "validators": {
         "required": true
       }
-    },
-    {
+    }]},
+    {"dl":[{
       "name": "Driving Liscence",
       "label": "Driving Liscence:",
       "value": "9321479",
@@ -46,7 +46,7 @@
       "validators": {
         "required": true
       }
-    },
+    }]},
     {
       "name": "Private Id",
       "label": "Personal Id:",
@@ -63,7 +63,7 @@
       "clg": {
         "name": "College Id",
         "label": "College Id:",
-        "value": "",
+        "value": "123",
         "type": "text",
         "validators": {
           "required": true
@@ -72,7 +72,7 @@
       "school": {
         "name": "School Id",
         "label": "School Id:",
-        "value": "",
+        "value": "11",
         "type": "text",
         "validators": {
           "required": true

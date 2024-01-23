@@ -1,0 +1,91 @@
+{
+  "controls": [
+    {
+      "name": "firstName",
+      "label": "First name:",
+      "value": "jk",
+      "type": "text",
+      "validators": {
+        "required": true
+      }
+    },
+    {
+      "name": "Id Proof",
+      "label": "Select Id proof:",
+      "type": "dropdown",
+      "validators": {
+        "required": true
+      },
+      "options": [
+        { "label": "Select Id", "value": "" },
+        { "label": "Aadhar", "value": "aadhar" },
+        { "label": "Driving Liscence", "value": "dl" },
+        { "label": "Others", "value": "others" }
+      ]
+    },
+    {
+      "name":"Submit",
+      "type":"button"
+    }
+  ],
+  "additionalDetails": [
+    {
+      "name": "Aadhar number",
+      "label": "Aadhar number:",
+      "value": "8765432",
+      "type": "text",
+      "validators": {
+        "required": true
+      }
+    },
+    {
+      "name": "Driving Liscence",
+      "label": "Driving Liscence:",
+      "value": "9321479",
+      "type": "text",
+      "validators": {
+        "required": true
+      }
+    },
+    {
+      "name": "Private Id",
+      "label": "Personal Id:",
+      "value": "",
+      "type": "dropdown",
+      "validators": {
+        "required": true
+      },
+      "options": [
+        { "label": "Select Id", "value": "" },
+        { "label": "School Id", "value": "school" },
+        { "label": "College Id", "value": "clg" }
+      ]
+    },
+    {
+      "clg":[
+        {
+          "name": "College Id",
+          "label": "College Id:",
+          "value": "",
+          "type": "text",
+          "validators": {
+            "required": true
+          }
+        }
+      ],
+      "school":[
+        {
+          "name": "School Id",
+          "label": "School Id:",
+          "value": "",
+          "type": "text",
+          "validators": {
+            "required": true
+          }
+        }
+      ]
+    }
+    
+  ]
+  
+}

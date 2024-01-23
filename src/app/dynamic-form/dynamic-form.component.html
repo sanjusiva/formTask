@@ -1,0 +1,56 @@
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    <div *ngFor="let control of myFormData?.controls">
+      <label>{{ control.label }}</label>
+      <div *ngIf="control.type==='text'">
+      <input
+        [type]="control.type"
+        [formControlName]="control.name"
+        [value]="control.value"
+      >
+      </div>
+      <div *ngIf="control.type === 'dropdown'">
+        <select [formControlName]="control.name" (change)="onDropdownChange($event,control.name)">
+          <option *ngFor="let option of control.options" [value]="option.value">
+            {{ option.label }}
+          </option>
+        </select>
+        <br>
+        <div *ngIf="selectedValue">
+          <div *ngFor="let control of myFormData?.additionalDetails">
+            <div *ngIf="control.name==='Aadhar number' && selectedValue === 'aadhar'">
+            <label>{{ control.label }}</label><br>
+              <input
+              [type]="control.type"
+              [formControlName]="control.name"
+              [value]="control.value"
+              >
+            </div>
+            <div *ngIf="control.name==='Driving Liscence' && selectedValue === 'dl'">
+            <label>{{ control.label }}</label><br>
+              <input
+              [type]="control.type"
+              [formControlName]="control.name"
+              [value]="control.value"
+              >
+            </div>
+            <div *ngIf="control.name==='Private Id' && selectedValue === 'others'">
+              <label>{{ control.label }}</label>
+              <select [formControlName]="control.name" (change)="onDropdownChange($event,control.name)">
+                <option *ngFor="let option of control.options" [value]="option.value">
+                  {{ option.label }}
+                </option>
+              </select>
+              <!-- <div *ngIf="selectedValue==='Private Id'">
+                sc
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <br>
+      <div *ngIf="control.type==='button'">
+        <button type="submit">Submit</button>
+      </div>
+    </div>
+</form>

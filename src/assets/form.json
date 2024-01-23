@@ -13,6 +13,7 @@
       "name": "Id Proof",
       "label": "Select Id proof:",
       "type": "dropdown",
+      "value":"",
       "validators": {
         "required": true
       },
@@ -25,7 +26,11 @@
     },
     {
       "name": "Submit",
-      "type": "button"
+      "type": "button",
+      "label":"",
+      "validators": {
+        "required": true
+      }
     }
   ],
   "additionalDetails": [

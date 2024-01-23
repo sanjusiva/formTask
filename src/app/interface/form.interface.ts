@@ -9,6 +9,8 @@ export interface JsonFormConfig {
     options?: any;
     // required: boolean;
     validators: FormValidators;
+    school?:any;
+    clg?:any;
   }
 export interface JsonForm {
     controls: JsonFormConfig[];

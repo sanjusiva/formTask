@@ -1,6 +1,10 @@
 <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
   <div *ngFor="let control of myFormData?.controls">
-    <label>{{ control.label }}</label>
+    <label>{{
+      control.validators.required && control.type !== "button"
+        ? control.label + "*"
+        : control.label
+    }}</label>
     <div *ngIf="control.type === 'text'">
       <input
         [type]="control.type"
@@ -27,8 +31,11 @@
                   ele.name === 'Aadhar number' && selectedValue === 'aadhar'
                 "
               >
-                <label>{{ ele.label }}</label
-                ><br />
+                <label>{{
+                  ele.validators.required ? ele.label + "*" : ele.label
+                }}</label>
+
+                <br />
                 <input
                   [type]="ele.type"
                   [formControlName]="ele.name"
@@ -44,8 +51,11 @@
                   ele.name === 'Driving Liscence' && selectedValue === 'dl'
                 "
               >
-                <label>{{ ele.label }}</label
-                ><br />
+                <label>{{
+                  ele.validators.required ? ele.label + "*" : ele.label
+                }}</label>
+
+                <br />
                 <input
                   [type]="ele.type"
                   [formControlName]="ele.name"
@@ -56,7 +66,11 @@
           </div>
           <div *ngIf="selectedValue === 'others'">
             <div *ngIf="control.name === 'Private Id'">
-              <label>{{ control.label }}</label>
+              <label>{{
+                control.validators.required
+                  ? control.label + "*"
+                  : control.label
+              }}</label>
               <select
                 [formControlName]="control.name"
                 (change)="onOthersDropdownChange($event, control.name)"
@@ -69,8 +83,12 @@
                 </option>
               </select>
               <div *ngIf="myForm.value['Private Id'] === 'school'">
-                <label>{{ control.school.label }}</label
-                ><br />
+                <label>{{
+                  control.validators.required
+                    ? control.school.label + "*"
+                    : control.school.label
+                }}</label>
+                <br />
                 <input
                   [type]="control.school.type"
                   [formControlName]="control.school.name"
@@ -78,7 +96,11 @@
                 />
               </div>
               <div *ngIf="myForm.value['Private Id'] === 'clg'">
-                <label>{{ control.clg.label }}</label 
+                <label>{{
+                  control.validators.required
+                    ? control.clg.label + "*"
+                    : control.clg.label
+                }}</label
                 ><br />
                 <input
                   [type]="control.clg.type"
@@ -94,7 +116,7 @@
 
     <br />
     <div *ngIf="control.type === 'button'">
-      <button type="submit">Submit</button>
+      <button type="submit" [disabled]="myForm.invalid">Submit</button>
     </div>
   </div>
 </form>

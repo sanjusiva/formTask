@@ -6,7 +6,8 @@
       "value": "jk",
       "type": "text",
       "validators": {
-        "required": true
+        "required": true,
+        "pattern":"[a-zA-Z]{3,}"
       }
     },
     {
@@ -21,7 +22,7 @@
         { "label": "Select Id", "value": "" },
         { "label": "Aadhar", "value": "aadhar" },
         { "label": "Driving Liscence", "value": "dl" },
-        { "label": "Others", "value": "others" }
+        { "label": "Personal Id", "value": "Personal" }
       ]
     },
     {
@@ -52,8 +53,9 @@
         "required": true
       }
     }]},
-    {
-      "name": "Private Id",
+    {"Personal":[
+      {
+      "name": "Personal",
       "label": "Personal Id:",
       "value": "",
       "type": "dropdown",
@@ -65,7 +67,7 @@
         { "label": "School Id", "value": "school" },
         { "label": "College Id", "value": "clg" }
       ],
-      "clg": {
+      "clg": [{
         "name": "clg",
         "label": "College Id:",
         "value": "123",
@@ -73,8 +75,8 @@
         "validators": {
           "required": true
         }
-      },
-      "school": {
+      }],
+      "school": [{
         "name": "school",
         "label": "School Id:",
         "value": "11",
@@ -82,7 +84,8 @@
         "validators": {
           "required": true
         }
-      }
-    }
+      }]
+    }]
+  }
   ]
 }

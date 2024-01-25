@@ -15,7 +15,7 @@
         {{ control.label }} is required.
       </div>
       <div *ngIf="myForm.get(control.name)?.hasError('pattern')" [ngStyle]="{'color':'red'}">
-        {{ control.label }} field is invalid.
+        {{control.validators.patternMsg}}
       </div>
     </div>
     <div *ngIf="control.type === 'dropdown'">

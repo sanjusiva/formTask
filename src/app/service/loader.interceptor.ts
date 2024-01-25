@@ -5,12 +5,11 @@ import {
   HttpEvent,
   HttpInterceptor
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { finalize, Observable } from 'rxjs';
 import { ApiService } from './api.service';
 
 @Injectable()
 export class LoaderInterceptor implements HttpInterceptor {
-
   constructor(private api:ApiService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
@@ -18,6 +17,11 @@ export class LoaderInterceptor implements HttpInterceptor {
     if(request.params.get('Name')){
       this.api.display()
     }
-    return next.handle(request);
+    return next.handle(request).pipe(
+      finalize(()=>{
+        console.log('in')
+          this.api.hide();
+      })
+    );
   }
 }

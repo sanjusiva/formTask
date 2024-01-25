@@ -1,6 +1,7 @@
 interface FormValidators {
   required?: boolean;
-  pattern?:string
+  pattern?:string;
+  patternMsg?:string
 }
 export interface JsonFormConfig {
     name: string;

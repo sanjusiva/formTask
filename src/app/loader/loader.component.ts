@@ -9,15 +9,18 @@ import { ApiService } from '../service/api.service';
 })
 export class LoaderComponent {
   spinner:Subject<boolean>=this.service.spinner
+  data:any;
   constructor(private service:ApiService){}
   callApi(){
     this.service.getCall().subscribe((res:any)=>{
       console.log("res: ",res)
+      this.data=res
     })
   }
   callGetApi(){
     this.service.getParamsCall().subscribe((res:any)=>{
       console.log("res: ",res)
+      this.data=res
     })
   }
 }

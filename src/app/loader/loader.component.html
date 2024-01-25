@@ -1,9 +1,7 @@
 <p>loader works!</p>
 <button (click)="callApi()">Call</button>
 <button (click)="callGetApi()">CallWithParams</button>
-{{spinner|async}}
-
 <div *ngIf="spinner|async">
-    {{spinner|async}}
-    <!-- <mat-spinner class="spinner">dd</mat-spinner> -->
+    <mat-spinner class="spinner">dd</mat-spinner>
 </div>
+{{data|json}}

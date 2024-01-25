@@ -9,7 +9,8 @@ import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 import { FormComponent } from './form/form.component';
 import { LoaderComponent } from './loader/loader.component';
 import { LoaderInterceptor } from './service/loader.interceptor';
-// import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { LoaderInterceptor } from './service/loader.interceptor';
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    // MatProgressSpinnerModule
+    BrowserAnimationsModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }

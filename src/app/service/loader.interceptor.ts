@@ -3,7 +3,8 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor,
+  HttpContextToken
 } from '@angular/common/http';
 import { finalize, Observable } from 'rxjs';
 import { ApiService } from './api.service';
@@ -13,8 +14,8 @@ export class LoaderInterceptor implements HttpInterceptor {
   constructor(private api:ApiService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    console.log("int req: ",request.params,request.params.get('Name'))
-    if(request.params.get('Name')){
+    console.log("int req: ",request.context.has(IS_LOADER_ENABLED))
+    if(request.context.has(IS_LOADER_ENABLED)){
       this.api.display()
     }
     return next.handle(request).pipe(
@@ -25,3 +26,5 @@ export class LoaderInterceptor implements HttpInterceptor {
     );
   }
 }
+
+export const IS_LOADER_ENABLED = new HttpContextToken<boolean>(() => false);

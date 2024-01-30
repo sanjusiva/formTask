@@ -20,16 +20,22 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './dynamic-form.component.html',
   styleUrls: ['./dynamic-form.component.css'],
 })
-export class DynamicFormComponent implements OnChanges {
+export class DynamicFormComponent implements OnChanges,OnInit{
   @Input() myFormData!: JsonForm;
   public myForm: FormGroup = this.formBuilder.group({});
   public selectedValue: string | undefined;
   public idProof:any;
   constructor(private formBuilder: FormBuilder, private http: HttpClient) {}
+  ngOnInit(): void {
+    console.log('fc: ',this.myForm);
+  }
+  
   ngOnChanges(changes: SimpleChanges) {
     if (!changes['myFormData'].firstChange) {
+      console.log('inside on change');
       
       this.buildForm(this.myFormData?.controls);
+      console.log('val: ',this.myForm.get('firstName'));
     }
   }
   buildForm(controls: JsonFormConfig[],otherId?:any) {
@@ -106,9 +112,7 @@ export class DynamicFormComponent implements OnChanges {
         val.forEach((e:any)=>{
             
     if (this.selectedValue ===e.name) {
-      Object.values(e).forEach((w:any)=>{
-        
-       
+      Object.values(e).forEach((w:any)=>{   
         if(e[this.idProof][0].name==this.idProof){
           this.buildForm(e[this.idProof]);
         }
@@ -139,5 +143,10 @@ export class DynamicFormComponent implements OnChanges {
         })
       })
       return res
+  }
+
+  statusPass(name:any):FormControl{
+    // console.log('val status: ',this.myForm.get(name));
+    return this.myForm.get(name) as FormControl
   }
 }

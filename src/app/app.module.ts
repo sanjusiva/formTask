@@ -11,13 +11,17 @@ import { LoaderComponent } from './loader/loader.component';
 import { LoaderInterceptor } from './service/loader.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { FieldValidationDirective } from './service/field-validation.directive';
+import { ErrorDisplayComponent } from './error-display/error-display.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DynamicFormComponent,
     FormComponent,
-    LoaderComponent
+    LoaderComponent,
+    FieldValidationDirective,
+    ErrorDisplayComponent
   ],
   imports: [
     BrowserModule,

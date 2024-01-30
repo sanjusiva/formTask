@@ -10,13 +10,18 @@
         [type]="control.type"
         [formControlName]="control.name"
         [value]="control.value"
-      />
-      <div *ngIf="myForm.get(control.name)?.hasError('required')" [ngStyle]="{'color':'red'}">
+        appFieldValidation
+      [fieldInput]="statusPass(control.name)"
+        /><div>
+          <p [ngStyle]="{'color':'red','margin':'auto'}" id="errorMsg"></p>
+        <!-- <app-error-display *ngIf="control.error" [ngStyle]="{'color':'red'}" [msg]="control.msg"></app-error-display> -->
+      </div>
+      <!-- <div *ngIf="myForm.get(control.name)?.hasError('required')" [ngStyle]="{'color':'red'}">
         {{ control.label }} is required.
       </div>
       <div *ngIf="myForm.get(control.name)?.hasError('pattern')" [ngStyle]="{'color':'red'}">
         {{control.validators.patternMsg}}
-      </div>
+      </div> -->
     </div>
     <div *ngIf="control.type === 'dropdown'">
       <select

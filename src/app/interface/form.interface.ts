@@ -13,6 +13,8 @@ export interface JsonFormConfig {
     validators: FormValidators;
     school?:any;
     clg?:any;
+    error?:boolean;
+    msg?:string
   }
 export interface JsonForm {
     controls: JsonFormConfig[];

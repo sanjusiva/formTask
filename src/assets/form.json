@@ -2,8 +2,8 @@
   "controls": [
     {
       "name": "firstName",
-      "label": "First name:",
-      "value": "jk",
+      "label": "First name",
+      "value": "",
       "type": "text",
       "validators": {
         "required": true,

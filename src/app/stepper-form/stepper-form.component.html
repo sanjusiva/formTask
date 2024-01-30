@@ -1,0 +1,67 @@
+<p>stepper-form works!</p>
+<mat-horizontal-stepper>
+  <mat-step label="pageOne">
+    Page One
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+      <div *ngFor="let control of formConfig?.pageOne.controls">
+        <label>{{control.label}}</label>
+        <div *ngIf="control.type === 'text'">
+          <input
+            [type]="control.type"
+            [formControlName]="control.name"
+            [value]="control.value"
+          />
+        </div>
+
+        <br />
+        <div *ngIf="control.type === 'button'">
+          <button type="submit">{{control.label}}</button>
+        </div>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step label="pageTwo">
+    Page One
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+      <div *ngFor="let control of formConfig?.pageTwo.controls">
+        <label>{{control.label}}</label>
+        <div *ngIf="control.type === 'text'">
+          <input
+            [type]="control.type"
+            [formControlName]="control.name"
+            [value]="control.value"
+          />
+          <div></div>
+        </div>
+
+        <br />
+        <div *ngIf="control.type === 'button'">
+          <button type="submit"  (click)="handleStepper(control.name)">{{control.label}}</button>
+          <!-- <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button> -->
+        </div>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step label="pageThree">
+    Page One
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+      <div *ngFor="let control of formConfig?.pageThree.controls">
+        <label>{{control.label}}</label>
+        <div *ngIf="control.type === 'text'">
+          <input
+            [type]="control.type"
+            [formControlName]="control.name"
+            [value]="control.value"
+          />
+          <div></div>
+        </div>
+
+        <br />
+        <div *ngIf="control.type === 'button'">
+          <button type="submit" [disabled]="myForm.invalid">{{control.label}}</button>
+        </div>
+      </div>
+    </form>
+  </mat-step>
+</mat-horizontal-stepper>

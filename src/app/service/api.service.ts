@@ -25,4 +25,7 @@ export class ApiService {
     const context={context: new HttpContext().set(IS_LOADER_ENABLED, true)}
     return this.http.get('https://run.mocky.io/v3/e23a1df9-7659-4556-a6a1-5c84b77c6955',context)
   }
+  getStepperFormField(){
+    return this.http.get('/assets/stepForm.json')
+  }
 }

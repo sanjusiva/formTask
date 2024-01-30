@@ -13,6 +13,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { FieldValidationDirective } from './service/field-validation.directive';
 import { ErrorDisplayComponent } from './error-display/error-display.component';
+import { StepperFormComponent } from './stepper-form/stepper-form.component';
+import { MatStepperModule } from '@angular/material/stepper'
+import { MatSidenavModule } from '@angular/material/sidenav'
+import {MatListModule} from '@angular/material/list'
 
 @NgModule({
   declarations: [
@@ -21,7 +25,8 @@ import { ErrorDisplayComponent } from './error-display/error-display.component';
     FormComponent,
     LoaderComponent,
     FieldValidationDirective,
-    ErrorDisplayComponent
+    ErrorDisplayComponent,
+    StepperFormComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +35,10 @@ import { ErrorDisplayComponent } from './error-display/error-display.component';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatStepperModule,
+    MatSidenavModule,
+    MatListModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }

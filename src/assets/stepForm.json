@@ -1,0 +1,72 @@
+{
+  "pageOne": {
+    "controls": [
+      {
+        "name": "firstName",
+        "label": "First name",
+        "value": "",
+        "type": "text",
+        "validators": {
+          "required": true,
+          "pattern": "[a-zA-Z]{3,}",
+          "patternMsg": "FirstName should be of minimum3 characters"
+        }
+      },
+      {
+        "name": "Next",
+        "type": "button",
+        "label": "Next"
+      }
+    ]
+  },
+  "pageTwo": {
+    "controls": [
+      {
+        "name": "fatherName",
+        "label": "Father name",
+        "value": "",
+        "type": "text",
+        "validators": {
+          "required": true,
+          "pattern": "[a-zA-Z]{3,}",
+          "patternMsg": "Father Name should be of minimum3 characters"
+        }
+      },
+      {
+        "name": "Previous",
+        "type": "button",
+        "label": "Previous"
+      },
+      {
+        "name": "Next",
+        "type": "button",
+        "label": "Next"
+      }
+    ]
+  },
+  "pageThree": {
+    "controls": [
+      {
+        "name": "motherName",
+        "label": "Mother name",
+        "value": "",
+        "type": "text",
+        "validators": {
+          "required": true,
+          "pattern": "[a-zA-Z]{3,}",
+          "patternMsg": "Mother name should be of minimum3 characters"
+        }
+      },
+      {
+        "name": "Previous",
+        "type": "button",
+        "label": "Previous"
+      },
+      {
+        "name": "Submit",
+        "type": "button",
+        "label": "Submit"
+      }
+    ]
+  }
+}

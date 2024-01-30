@@ -1,1 +1,16 @@
-<router-outlet></router-outlet>
+
+<mat-sidenav-container fullscreen>
+    <mat-sidenav #sidenav  mode="side" class="example-sidenav" [ngStyle]="{ 'width.em': 10 }" opened="true">
+        <mat-nav-list>
+            <mat-list-item routerLink="/form">
+                Form
+            </mat-list-item>
+            <mat-list-item routerLink="/load">
+                Loader
+            </mat-list-item>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content id="content">
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

@@ -4,7 +4,7 @@
     Page One
     <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
       <div *ngFor="let control of formConfig?.pageOne.controls">
-        <label>{{control.label}}</label>
+        <label *ngIf="control.type!=='button'">{{control.label}}</label>
         <div *ngIf="control.type === 'text'">
           <input
             [type]="control.type"
@@ -26,7 +26,7 @@
     Page One
     <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
       <div *ngFor="let control of formConfig?.pageTwo.controls">
-        <label>{{control.label}}</label>
+        <label *ngIf="control.type!=='button'">{{control.label}}</label>
         <div *ngIf="control.type === 'text'">
           <input
             [type]="control.type"
@@ -38,9 +38,12 @@
 
         <br />
         <div *ngIf="control.type === 'button'">
-          <button type="submit"  (click)="handleStepper(control.name)">{{control.label}}</button>
-          <!-- <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button> -->
+          <div *ngIf="control.label==='Previous';else elseBlock">
+          <button mat-button matStepperPrevious>{{control.label}}</button>
+          </div>
+          <ng-template #elseBlock>
+          <button mat-button matStepperNext>{{control.label}}</button>
+          </ng-template>  
         </div>
       </div>
     </form>
@@ -49,7 +52,7 @@
     Page One
     <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
       <div *ngFor="let control of formConfig?.pageThree.controls">
-        <label>{{control.label}}</label>
+        <label *ngIf="control.type!=='button'">{{control.label}}</label>
         <div *ngIf="control.type === 'text'">
           <input
             [type]="control.type"
@@ -60,8 +63,21 @@
         </div>
 
         <br />
-        <div *ngIf="control.type === 'button'">
+        <!-- <div *ngIf="control.type === 'button'">
           <button type="submit" [disabled]="myForm.invalid">{{control.label}}</button>
+        </div> -->
+        <div *ngIf="control.type === 'button'">
+          <div [ngSwitch]="control.label">
+            <div *ngSwitchCase="'Previous'">
+          <button mat-button matStepperPrevious>{{control.label}}</button>
+            </div>
+            <div *ngSwitchCase="'Next'">
+            <button mat-button matStepperNext>{{control.label}}</button>
+            </div>
+            <div *ngSwitchDefault>
+              <button type="submit" [disabled]="myForm.invalid">{{control.label}}</button>
+            </div>
+          </div>
         </div>
       </div>
     </form>

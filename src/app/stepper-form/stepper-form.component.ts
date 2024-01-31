@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../service/api.service';
-import { MatStepper } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-stepper-form',
@@ -10,7 +9,6 @@ import { MatStepper } from '@angular/material/stepper';
 })
 export class StepperFormComponent implements OnInit{
   formConfig:any;
-  stepper!:MatStepper;
   public myForm: FormGroup = this.formBuilder.group({});
 
 constructor(private api:ApiService,private formBuilder:FormBuilder){}
@@ -49,11 +47,6 @@ constructor(private api:ApiService,private formBuilder:FormBuilder){}
     }
     
     
-  }
-  handleStepper(name:any){
-    if(name=='Previous'){
-      this.stepper.previous()
-    }
   }
   onSubmit(){
     console.log('submit: ',this.myForm.value)

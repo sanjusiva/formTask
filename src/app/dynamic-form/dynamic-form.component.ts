@@ -53,6 +53,7 @@ export class DynamicFormComponent implements OnChanges,OnInit{
               }
               break;
             case 'pattern':
+          console.log("mt keyyyy: ",key,ele)
               validatorsToAdd.push(Validators.pattern(value));
               break;
           }
@@ -61,7 +62,7 @@ export class DynamicFormComponent implements OnChanges,OnInit{
         
       }
     }
-    
+    console.log("fff: ",this.myForm)
     
   }
 
@@ -128,7 +129,7 @@ export class DynamicFormComponent implements OnChanges,OnInit{
     console.log(this.myForm.value)
   }
   getAdditionalDetails(control: any,id?:any) {
-    
+    console.log("!!!: ",control,id)
     let res;
     if(id){
       return control
@@ -146,15 +147,51 @@ export class DynamicFormComponent implements OnChanges,OnInit{
   }
 
   statusPass(name:any):FormControl{
+    console.log('mm status pass: ',name);
+    
     return this.myForm.get(name) as FormControl
   }
-  errorMsgPass(name:any){
-    console.log('val status: ',this.myFormData.controls);
-    for(let ele of this.myFormData.controls){
-      if(ele.name===name){
-        console.log('e ele: ',ele);
-      }
-      
-    }
+  // errorMsgPass(name:any,control?:any,data?:any){
+  //   let msg;
+  //   console.log('mm val status: ',this.myFormData.controls,name,this.selectedValue,control);
+  //   if(control){
+  //     console.log("mm ele: ",this.myFormData.additionalDetails);
+
+  //     for(let ele of this.myFormData.additionalDetails){
+  //       console.log("mm ele: ",ele);
+  //       let eKey:any;
+  //       let eVal:any;
+  //       for([eKey,eVal] of Object.entries(ele)){
+  //         if(eKey===name){
+  //           msg=eVal[0].validationMsg
+  //         }
+  //         console.log('mm scl: ',eVal[0][name],data.validationMsg)
+  //         // if(eVal[0]?.name)
+  //         // for(let item of eVal[0][name]){
+  //         // console.log('mm scl item: ',item)
+  //         // }
+  //         console.log("mm val: ",eKey,eVal[0].validationMsg);
+  //       }
+  //       if(ele.name===name){
+  //         console.log('mm e ele if: ',ele.validationMsg);
+  //         msg=ele.validationMsg
+  //       }
+  //     }
+  //   }
+  //   else{
+  //     for(let ele of this.myFormData.controls){
+  //       if(ele.name===name){
+  //         console.log('mm e ele else: ',ele.validationMsg);
+  //         msg=ele.validationMsg
+  //       }
+  //     }
+  //   }
+  //   console.log("fff mm: ",msg  )
+  //   return msg
+  // }
+
+  errorMsgPass(data:any){
+    console.log('data msg: ',data)
+    return data.validationMsg
   }
 }

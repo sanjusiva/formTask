@@ -14,10 +14,12 @@
         </div>
 
         <br />
-        <div *ngIf="control.type === 'button'">
+        <!-- <div *ngIf="control.type === 'button'">
           <button type="submit">{{control.label}}</button>
-        </div>
+        </div> -->
       </div>
+      <!-- <button mat-button matStepperPrevious>Back</button> -->
+          <button mat-button matStepperNext>Next</button>
     </form>
   </mat-step>
   <mat-step label="pageTwo">

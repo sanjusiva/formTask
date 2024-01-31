@@ -12,6 +12,7 @@
         [value]="control.value"
         appFieldValidation
       [fieldInput]="statusPass(control.name)"
+      [errorMsg]="errorMsgPass(control.name)"
         /><div>
           <p [ngStyle]="{'color':'red','margin':'auto'}" id="errorMsg"></p>
         <!-- <app-error-display *ngIf="control.error" [ngStyle]="{'color':'red'}" [msg]="control.msg"></app-error-display> -->

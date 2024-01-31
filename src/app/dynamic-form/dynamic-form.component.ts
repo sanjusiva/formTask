@@ -35,7 +35,7 @@ export class DynamicFormComponent implements OnChanges,OnInit{
       console.log('inside on change');
       
       this.buildForm(this.myFormData?.controls);
-      console.log('val: ',this.myForm.get('firstName'));
+      console.log('val: ',this.myFormData);
     }
   }
   buildForm(controls: JsonFormConfig[],otherId?:any) {
@@ -146,7 +146,15 @@ export class DynamicFormComponent implements OnChanges,OnInit{
   }
 
   statusPass(name:any):FormControl{
-    // console.log('val status: ',this.myForm.get(name));
     return this.myForm.get(name) as FormControl
+  }
+  errorMsgPass(name:any){
+    console.log('val status: ',this.myFormData.controls);
+    for(let ele of this.myFormData.controls){
+      if(ele.name===name){
+        console.log('e ele: ',ele);
+      }
+      
+    }
   }
 }

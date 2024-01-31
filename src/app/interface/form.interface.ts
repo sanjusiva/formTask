@@ -1,7 +1,10 @@
 interface FormValidators {
   required?: boolean;
   pattern?:string;
-  patternMsg?:string
+}
+interface FormValidatorMsg {
+  required?: string;
+  pattern?:string;
 }
 export interface JsonFormConfig {
     name: string;
@@ -11,10 +14,9 @@ export interface JsonFormConfig {
     options?: any;
     // required: boolean;
     validators: FormValidators;
+    validationMsg:FormValidatorMsg;
     school?:any;
     clg?:any;
-    error?:boolean;
-    msg?:string
   }
 export interface JsonForm {
     controls: JsonFormConfig[];

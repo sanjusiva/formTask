@@ -7,8 +7,11 @@
       "type": "text",
       "validators": {
         "required": true,
-        "pattern":"[a-zA-Z]{3,}",
-        "patternMsg":"FirstName should be of minimum3 characters"
+        "pattern":"[a-zA-Z]{3,}"
+      },
+      "validationMsg": {
+        "required": "First name is required",
+        "pattern":"FirstName should be of minimum3 characters"
       }
     },
     {
@@ -18,6 +21,9 @@
       "value":"",
       "validators": {
         "required": true
+      },
+      "validationMsg": {
+        "required": "Id Proof is required"
       },
       "options": [
         { "label": "Select Id", "value": "" },
@@ -32,6 +38,9 @@
       "label":"",
       "validators": {
         "required": true
+      },
+      "validationMsg": {
+        "required": ""
       }
     }
   ],
@@ -43,6 +52,9 @@
       "type": "text",
       "validators": {
         "required": true
+      },
+      "validationMsg": {
+        "required": "Aadhar is required"
       }
     }]},
     {"dl":[{
@@ -52,6 +64,9 @@
       "type": "text",
       "validators": {
         "required": true
+      },
+      "validationMsg": {
+        "required": "DL is required"
       }
     }]},
     {"Personal":[
@@ -62,6 +77,9 @@
       "type": "dropdown",
       "validators": {
         "required": true
+      },
+      "validationMsg": {
+        "required": "Personal Id is required"
       },
       "options": [
         { "label": "Select Id", "value": "" },
@@ -75,6 +93,9 @@
         "type": "text",
         "validators": {
           "required": true
+        },
+        "validationMsg": {
+          "required": "Clg Proof is required"
         }
       }],
       "school": [{
@@ -84,6 +105,9 @@
         "type": "text",
         "validators": {
           "required": true
+        },
+        "validationMsg": {
+          "required": "School Proof is required"
         }
       }]
     }]

@@ -13,6 +13,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class FieldValidationDirective {
   @Input() fieldInput!: FormControl;
+  @Input() errorMsg!: any;
 
   constructor(private e: ElementRef) {}
 
@@ -29,14 +30,20 @@ export class FieldValidationDirective {
       console.log('mt: ',this.fieldInput);
       
       let msg = document.getElementById('errorMsg');
-  
+      
       if (this.fieldInput.errors && this.fieldInput.errors['required']) {
-        if (this.fieldInput.errors['required'] == this.fieldInput.touched) {
+        console.log('val status uh: ',this.fieldInput.errors['required'],this.fieldInput.touched,msg);
+        if (this.fieldInput.errors['required'] && this.fieldInput.touched) {
           if (msg !== null) {
-            msg.innerHTML = 'req';
+
+            msg.innerHTML = "this.fieldInput.errors['message']";
+            // let message="validationMsg['required']"
+            // console.log('ce: ',this.fieldInput.setErrors({'required':true,'message':'req'}));
+            
           }
         }
       }
+      console.log('mt1: ',this.fieldInput);
       this.fieldInput.statusChanges.subscribe((status) => {
         console.log("status: ",status,msg);
         

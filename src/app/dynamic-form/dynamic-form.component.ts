@@ -146,11 +146,6 @@ export class DynamicFormComponent implements OnChanges,OnInit{
       return res
   }
 
-  statusPass(name:any):FormControl{
-    console.log('mm status pass: ',name);
-    
-    return this.myForm.get(name) as FormControl
-  }
   // errorMsgPass(name:any,control?:any,data?:any){
   //   let msg;
   //   console.log('mm val status: ',this.myFormData.controls,name,this.selectedValue,control);
@@ -189,7 +184,11 @@ export class DynamicFormComponent implements OnChanges,OnInit{
   //   console.log("fff mm: ",msg  )
   //   return msg
   // }
-
+  statusPass(name:any):FormControl{
+    console.log('mm status pass: ',name);
+    
+    return this.myForm.get(name) as FormControl
+  }
   errorMsgPass(data:any){
     console.log('data msg: ',data)
     return data.validationMsg

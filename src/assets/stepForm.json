@@ -10,6 +10,10 @@
           "required": true,
           "pattern": "[a-zA-Z]{3,}",
           "patternMsg": "FirstName should be of minimum3 characters"
+        },
+        "validationMsg": {
+          "required": "First name is required",
+          "pattern":"FirstName should be of minimum3 characters"
         }
       },
       {
@@ -28,8 +32,11 @@
         "type": "text",
         "validators": {
           "required": true,
-          "pattern": "[a-zA-Z]{3,}",
-          "patternMsg": "Father Name should be of minimum3 characters"
+          "pattern": "[a-zA-Z]{3,}"
+        },
+        "validationMsg": {
+          "required": "Father name is required",
+          "pattern":"Father Name should be of minimum3 characters"
         }
       },
       {
@@ -53,9 +60,12 @@
         "type": "text",
         "validators": {
           "required": true,
-          "pattern": "[a-zA-Z]{3,}",
-          "patternMsg": "Mother name should be of minimum3 characters"
-        }
+          "pattern": "[a-zA-Z]{3,}"
+        },
+      "validationMsg": {
+        "required": "Mother name is required",
+        "pattern":"Mother name should be of minimum3 characters"
+      }
       },
       {
         "name": "Previous",

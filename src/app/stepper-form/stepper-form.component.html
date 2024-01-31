@@ -10,7 +10,14 @@
             [type]="control.type"
             [formControlName]="control.name"
             [value]="control.value"
+            appFieldValidation
+                  [fieldInput]="statusPass(control.name)"
+                [errorMsg]="errorMsgPass(control)"
+                [name]="control.name"
           />
+        </div>
+        <div>
+          <p [ngStyle]="{'color':'red','margin':'auto'}" [id]="control.name"></p>
         </div>
 
         <br />
@@ -32,8 +39,14 @@
             [type]="control.type"
             [formControlName]="control.name"
             [value]="control.value"
+            appFieldValidation
+                  [fieldInput]="statusPass(control.name)"
+                [errorMsg]="errorMsgPass(control)"
+                [name]="control.name"
           />
-          <div></div>
+          <div>
+            <p [ngStyle]="{'color':'red','margin':'auto'}" [id]="control.name"></p>
+          </div>
         </div>
 
         <br />
@@ -58,8 +71,14 @@
             [type]="control.type"
             [formControlName]="control.name"
             [value]="control.value"
+            appFieldValidation
+                  [fieldInput]="statusPass(control.name)"
+                [errorMsg]="errorMsgPass(control)"
+                [name]="control.name"
           />
-          <div></div>
+          <div>
+            <p [ngStyle]="{'color':'red','margin':'auto'}" [id]="control.name"></p>
+          </div>
         </div>
 
         <br />

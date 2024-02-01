@@ -27,9 +27,9 @@
       },
       "options": [
         { "label": "Select Id", "value": "" },
+        { "label": "Personal Id", "value": "Personal" },
         { "label": "Aadhar", "value": "aadhar" },
-        { "label": "Driving Liscence", "value": "dl" },
-        { "label": "Personal Id", "value": "Personal" }
+        { "label": "Driving Liscence", "value": "drivingLiscence" }
       ]
     },
     {
@@ -57,8 +57,8 @@
         "required": "Aadhar is required"
       }
     }]},
-    {"dl":[{
-      "name": "dl",
+    {"drivingLiscence":[{
+      "name": "drivingLiscence",
       "label": "Driving Liscence:",
       "value": "9321479",
       "type": "text",

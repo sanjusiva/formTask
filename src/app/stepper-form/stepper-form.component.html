@@ -1,4 +1,4 @@
-<p>stepper-form works!</p>
+<!-- <p>stepper-form works!</p>
 <mat-horizontal-stepper>
   <mat-step label="pageOne">
     Page One
@@ -21,11 +21,7 @@
         </div>
 
         <br />
-        <!-- <div *ngIf="control.type === 'button'">
-          <button type="submit">{{control.label}}</button>
-        </div> -->
       </div>
-      <!-- <button mat-button matStepperPrevious>Back</button> -->
           <button mat-button matStepperNext>Next</button>
     </form>
   </mat-step>
@@ -82,9 +78,6 @@
         </div>
 
         <br />
-        <!-- <div *ngIf="control.type === 'button'">
-          <button type="submit" [disabled]="myForm.invalid">{{control.label}}</button>
-        </div> -->
         <div *ngIf="control.type === 'button'">
           <div [ngSwitch]="control.label">
             <div *ngSwitchCase="'Previous'">
@@ -101,4 +94,75 @@
       </div>
     </form>
   </mat-step>
+</mat-horizontal-stepper> -->
+
+<!-- {{formConfig.id[0]|json}} -->
+<!-- {{formConfig?.pageOne.controls|json}} -->
+
+<!-- <mat-horizontal-stepper>
+  <ng-container *ngFor="let item of id">
+{{formConfig[item].controls|json}}
+    <div *ngFor="let control of formConfig[id].controls">
+      {{control|json}}
+    </div>
+  </ng-container>
+</mat-horizontal-stepper> -->
+
+<!-- <div *ngFor="let i of id">
+  <div *ngFor="let control of formConfig[i].controls">
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+      <label *ngIf="control.type !== 'button'">{{ control.label }}</label>
+      <div *ngIf="control.type === 'text'">
+        <input
+          [type]="control.type"
+          [formControlName]="control.name"
+          [value]="control.value"
+          appFieldValidation
+          [fieldInput]="statusPass(control.name)"
+          [errorMsg]="errorMsgPass(control)"
+          [name]="control.name"
+        />
+      </div>
+    </form>
+  </div>
+</div> -->
+
+
+<mat-horizontal-stepper>
+  <div *ngFor="let i of id">
+    <mat-step>
+      <div *ngFor="let control of formConfig[i].controls">
+        <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+          <label *ngIf="control.type !== 'button'">{{ control.label }}</label>
+          <div *ngIf="control.type === 'text'">
+            <input
+              [type]="control.type"
+              [formControlName]="control.name"
+              [value]="control.value"
+              appFieldValidation
+              [fieldInput]="statusPass(control.name)"
+              [errorMsg]="errorMsgPass(control)"
+              [name]="control.name"
+            />
+          </div>
+          <div>
+            <p [ngStyle]="{'color':'red','margin':'auto'}" [id]="control.name"></p>
+          </div>
+          <div *ngIf="control.type === 'button'">
+            <div [ngSwitch]="control.label">
+              <div *ngSwitchCase="'Previous'">
+            <button mat-button matStepperPrevious>{{control.label}}</button>
+              </div>
+              <div *ngSwitchCase="'Next'">
+              <button mat-button matStepperNext>{{control.label}}</button>
+              </div>
+              <div *ngSwitchDefault>
+                <button type="submit" [disabled]="myForm.invalid">{{control.label}}</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </mat-step>
+  </div>
 </mat-horizontal-stepper>

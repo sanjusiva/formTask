@@ -8,8 +8,7 @@
         "type": "text",
         "validators": {
           "required": true,
-          "pattern": "[a-zA-Z]{3,}",
-          "patternMsg": "FirstName should be of minimum3 characters"
+          "pattern": "[a-zA-Z]{3,}"
         },
         "validationMsg": {
           "required": "First name is required",

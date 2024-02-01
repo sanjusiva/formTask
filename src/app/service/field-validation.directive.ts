@@ -1,9 +1,4 @@
-import {
-  Directive,
-  ElementRef,
-  HostListener,
-  Input
-} from '@angular/core';
+import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Directive({
@@ -22,43 +17,38 @@ export class FieldValidationDirective {
   }
   @HostListener('blur')
   onBlurEvent() {
-    this.fieldValidation()
+    this.fieldValidation();
   }
 
-  fieldValidation(){
-      console.log('mt: ',this.fieldInput," em: ",this.errorMsg," name: ",this.name);
-      
-      let msg = document.getElementById(this.name);
-      
-      if (this.fieldInput.errors && this.fieldInput.errors['required']) {
-        console.log('val status uh: ',this.fieldInput.errors['required'],this.fieldInput.touched,msg);
-        if (this.fieldInput.errors['required'] && this.fieldInput.touched) {
-          if (msg !== null) {
-
-            msg.innerHTML = this.errorMsg.required;
-            
+  fieldValidation() {
+    let displayError = document.getElementById(this.name) as any;
+    console.log(
+      'mt: ',
+      this.fieldInput,
+      ' em: ',
+      this.errorMsg,
+      ' name: ',
+      this.name
+    );
+    this.fieldInput.statusChanges.subscribe((status) => {
+      for (let key in Object.keys(this.errorMsg.validators)) {
+        if (displayError !== null) {
+          let objKey = Object.keys(this.errorMsg.validators)[key];
+          if (this.fieldInput.value === '') {
+            displayError.innerHTML =
+              this.errorMsg.validationMsg[
+                Object.keys(this.errorMsg.validators)[0]
+              ];
+          } else if (status == 'INVALID') {
+            console.log('invalid print: ', this.errorMsg.validationMsg[objKey]," objkey: ",objKey);
+            displayError.innerHTML = this.errorMsg.validationMsg[objKey];
+          } else {
+            displayError.innerHTML = '';
           }
+        } else {
+          displayError.innerHTML = '';
         }
       }
-      console.log('mt1: ',this.fieldInput);
-      this.fieldInput.statusChanges.subscribe((status) => {
-        console.log("status change: ",status,msg);
-        
-        if (msg !== null) {
-        console.log("status msg: ",status,msg);
-  
-          if (status == 'INVALID') {
-        console.log("status if: ",status,msg);
-        if (this.fieldInput.errors && this.fieldInput.errors['pattern']) {
-            msg.innerHTML = this.errorMsg.pattern;
-        }
-          } 
-          else {
-            if (msg !== null) {
-            msg.innerHTML = '';
-            }
-          }
-        }
-      });
-    }
+    });
+  }
 }

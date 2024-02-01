@@ -11,11 +11,12 @@
         [formControlName]="control.name"
         [value]="control.value"
         appFieldValidation
-      [fieldInput]="statusPass(control.name)"
-      [errorMsg]="errorMsgPass(control)"
-      [name]="control.name"
-        /><div>
-          <p [ngStyle]="{'color':'red','margin':'auto'}" id="firstName"></p>
+        [fieldInput]="statusPass(control.name)"
+        [errorMsg]="errorMsgPass(control)"
+        [name]="control.name"
+      />
+      <div>
+        <p [ngStyle]="{ color: 'red', margin: 'auto' }" id="firstName"></p>
         <!-- <app-error-display *ngIf="control.error" [ngStyle]="{'color':'red'}" [msg]="control.msg"></app-error-display> -->
       </div>
       <!-- <div *ngIf="myForm.get(control.name)?.hasError('required')" [ngStyle]="{'color':'red'}">
@@ -31,14 +32,14 @@
         (change)="onDropdownChange($event, control.name)"
         appFieldValidation
         [fieldInput]="statusPass(control.name)"
-      [errorMsg]="errorMsgPass(control)"
-      [name]="control.name"
+        [errorMsg]="errorMsgPass(control)"
+        [name]="control.name"
       >
         <option *ngFor="let option of control.options" [value]="option.value">
           {{ option.label }}
         </option>
       </select>
-      <p [ngStyle]="{'color':'red','margin':'auto'}" [id]="control.name"></p>
+      <p [ngStyle]="{ color: 'red', margin: 'auto' }" [id]="control.name"></p>
       <br />
       <div *ngIf="selectedValue">
         <div *ngFor="let control of myFormData?.additionalDetails">
@@ -55,14 +56,16 @@
                   [value]="ele.value"
                   appFieldValidation
                   [fieldInput]="statusPass(ele.name)"
-                [errorMsg]="errorMsgPass(ele)"
-                [name]="ele.name"
+                  [errorMsg]="errorMsgPass(ele)"
+                  [name]="ele.name"
                 />
                 <!-- <div *ngIf="myForm.get(ele.name)?.hasError('required')" [ngStyle]="{'color':'red'}">
                   {{ ele.name }} is required.
                 </div> -->
-                <p [ngStyle]="{'color':'red','margin':'auto'}" [id]="ele.name"></p>
-
+                <p
+                  [ngStyle]="{ color: 'red', margin: 'auto' }"
+                  [id]="ele.name"
+                ></p>
               </div>
               <div *ngIf="ele.type === 'dropdown'">
                 <label>{{
@@ -73,8 +76,8 @@
                   (change)="onOthersDropdownChange($event, ele.name)"
                   appFieldValidation
                   [fieldInput]="statusPass(ele.name)"
-                [errorMsg]="errorMsgPass(ele)"
-                [name]="ele.name"
+                  [errorMsg]="errorMsgPass(ele)"
+                  [name]="ele.name"
                 >
                   <option
                     *ngFor="let option of ele.options"
@@ -86,7 +89,10 @@
                 <!-- <div *ngIf="myForm.get(ele.name)?.hasError('required')" [ngStyle]="{'color':'red'}">
                   {{ ele.name }} is required.
                 </div> -->
-                <p [ngStyle]="{'color':'red','margin':'auto'}" [id]="ele.name"></p>
+                <p
+                  [ngStyle]="{ color: 'red', margin: 'auto' }"
+                  [id]="ele.name"
+                ></p>
                 <div *ngFor="let item of ele | keyvalue">
                   <div *ngIf="item.key === idProof">
                     <div
@@ -105,15 +111,16 @@
                           [value]="val.value"
                           appFieldValidation
                           [fieldInput]="statusPass(val.name)"
-                        [errorMsg]="errorMsgPass(val)"
-                        [name]="val.name"
+                          [errorMsg]="errorMsgPass(val)"
+                          [name]="val.name"
                         />
                         <!-- <div *ngIf="myForm.get(val.name)?.hasError('required')" [ngStyle]="{'color':'red'}">
                           {{ val.label }} is required.
                         </div> -->
-                <p [ngStyle]="{'color':'red','margin':'auto'}" [id]="val.name"></p>
-
-
+                        <p
+                          [ngStyle]="{ color: 'red', margin: 'auto' }"
+                          [id]="val.name"
+                        ></p>
                       </div>
                     </div>
                   </div>
@@ -126,13 +133,12 @@
       <!-- <div *ngIf="myForm.get(control.name)?.hasError('required')" [ngStyle]="{'color':'red'}">
         {{ control.name }} is required.
       </div> -->
-      <p [ngStyle]="{'color':'red','margin':'auto'}" [id]="control.name"></p>
-
+      <p [ngStyle]="{ color: 'red', margin: 'auto' }" [id]="control.name"></p>
     </div>
 
     <br />
     <div *ngIf="control.type === 'button'">
-      <button type="submit">Submit</button>{{myForm.valid}}
+      <button type="submit">Submit</button>{{ myForm.valid }}
     </div>
   </div>
 </form>

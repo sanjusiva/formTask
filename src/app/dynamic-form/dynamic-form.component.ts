@@ -1,10 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import {
   Component,
   Input,
   OnChanges,
   OnInit,
   SimpleChanges,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   FormBuilder,
@@ -13,39 +13,38 @@ import {
   Validators,
 } from '@angular/forms';
 import { JsonForm, JsonFormConfig } from '../interface/form.interface';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-dynamic-form',
   templateUrl: './dynamic-form.component.html',
   styleUrls: ['./dynamic-form.component.css'],
 })
-export class DynamicFormComponent implements OnChanges,OnInit{
+export class DynamicFormComponent implements OnChanges, OnInit {
   @Input() myFormData!: JsonForm;
   public myForm: FormGroup = this.formBuilder.group({});
   public selectedValue: string | undefined;
-  public idProof:any;
+  public idProof: any;
   constructor(private formBuilder: FormBuilder, private http: HttpClient) {}
   ngOnInit(): void {
-    console.log('fc: ',this.myForm);
+    console.log('fc: ', this.myForm);
   }
-  
+
   ngOnChanges(changes: SimpleChanges) {
     if (!changes['myFormData'].firstChange) {
       console.log('inside on change');
-      
+
       this.buildForm(this.myFormData?.controls);
-      console.log('val: ',this.myFormData);
+      console.log('val: ', this.myFormData);
     }
   }
-  buildForm(controls: JsonFormConfig[],otherId?:any) {
-    
-    let validatorsToAdd=[];
+
+  buildForm(controls: JsonFormConfig[], otherId?: any) {
+    let validatorsToAdd = [];
     for (const ele of controls) {
-      
       if (ele.type !== 'button') {
-        
         for (const [key, value] of Object.entries(ele.validators)) {
+          console.log('check key', key, ele.name);
+
           switch (key) {
             case 'required':
               if (value) {
@@ -53,97 +52,90 @@ export class DynamicFormComponent implements OnChanges,OnInit{
               }
               break;
             case 'pattern':
-          console.log("mt keyyyy: ",key,ele)
-              validatorsToAdd.push(Validators.pattern(value));
+              console.log('mt keyyyy: ', key, ele);
+              if (value) {
+                validatorsToAdd.push(Validators.pattern(value));
+              }
               break;
           }
         }
-        this.myForm.addControl(ele.name, this.formBuilder.control(ele.value,validatorsToAdd));
-        
+        console.log('fff vali: ', ele.value, validatorsToAdd);
+        this.myForm.addControl(
+          ele.name,
+          this.formBuilder.control(ele.value, validatorsToAdd)
+        );
       }
     }
-    console.log("fff: ",this.myForm)
-    
+    console.log('fff: ', this.myForm);
   }
 
   onDropdownChange(event: any, name: any) {
-    
-    
-    if(event.target.value!==this.selectedValue && this.selectedValue!==undefined){
-      
+    console.log('drop: ', event.target.value, name," v: ",this.myForm.get(event.target.value)?.value);
+
+    if (
+      event.target.value !== this.selectedValue &&
+      this.selectedValue !== undefined
+    ) {
       this.myForm.removeControl(this.selectedValue);
     }
     this.selectedValue = event.target.value;
     this.myForm.get(name)?.setValue(this.selectedValue);
-        
-        
-        this.myFormData.additionalDetails.forEach((key)=>{
-        
-        Object.values(key).forEach((val:any)=>{
-          
-          val.forEach((e:any)=>{
-              
-               if (this.selectedValue) {
-                
-      if (this.selectedValue ===e.name) {
-        
-        this.buildForm(val);
-      } 
-      
-    }
-     else {
-      
-      this.myForm.removeControl('additionalDetails');
-    }
-          })
-        })
-        })
+
+    this.myFormData.additionalDetails.forEach((key) => {
+      Object.values(key).forEach((val: any) => {
+        val.forEach((e: any) => {
+          if (this.selectedValue) {
+            if (this.selectedValue === e.name) {
+              console.log('val drop: ', val);
+
+              this.buildForm(val);
+            }
+          } else {
+            this.myForm.removeControl('additionalDetails');
+          }
+        });
+      });
+    });
   }
 
   onOthersDropdownChange(event: any, name: any) {
-    
-    if(this.idProof!==undefined && this.idProof!==event.target.value){
+    if (this.idProof !== undefined && this.idProof !== event.target.value) {
       this.myForm.removeControl(this.idProof);
     }
-    this.idProof=event.target.value
-    this.myFormData.additionalDetails.forEach((key)=>{
-      
-      Object.values(key).forEach((val:any)=>{
-        
-        val.forEach((e:any)=>{
-            
-    if (this.selectedValue ===e.name) {
-      Object.values(e).forEach((w:any)=>{   
-        if(e[this.idProof][0].name==this.idProof){
-          this.buildForm(e[this.idProof]);
-        }
-      })
-    } 
-        })
-      })
-      })
-
+    this.idProof = event.target.value;
+    this.myFormData.additionalDetails.forEach((key) => {
+      Object.values(key).forEach((val: any) => {
+        val.forEach((e: any) => {
+          if (this.selectedValue === e.name) {
+            Object.values(e).forEach((w: any) => {
+              if (e[this.idProof][0].name == this.idProof) {
+                this.buildForm(e[this.idProof]);
+              }
+            });
+          }
+        });
+      });
+    });
   }
 
   onSubmit() {
-    console.log(this.myForm.value)
+    console.log('submit: ', this.myForm.value);
   }
-  getAdditionalDetails(control: any,id?:any) {
-    console.log("!!!: ",control,id)
+  getAdditionalDetails(control: any, id?: any) {
+    console.log('!!!: ', control, id);
     let res;
-    if(id){
-      return control
+    if (id) {
+      return control;
     }
-      Object.values(control).forEach((val:any)=>{
-        val.forEach((e:any)=>{
-          if(e.name===this.selectedValue){
-            
-            res=val
-            return val
-          }
-        })
-      })
-      return res
+    Object.values(control).forEach((val: any) => {
+      val.forEach((e: any) => {
+        if (e.name === this.selectedValue) {
+          res = val;
+          return val;
+        }
+      });
+    });
+    return res;
   }
 
   // errorMsgPass(name:any,control?:any,data?:any){
@@ -184,13 +176,13 @@ export class DynamicFormComponent implements OnChanges,OnInit{
   //   console.log("fff mm: ",msg  )
   //   return msg
   // }
-  statusPass(name:any):FormControl{
-    console.log('mm status pass: ',name);
-    
-    return this.myForm.get(name) as FormControl
+  statusPass(name: any): FormControl {
+    console.log('mm status pass: ', name);
+
+    return this.myForm.get(name) as FormControl;
   }
-  errorMsgPass(data:any){
-    console.log('data msg: ',data)
-    return data.validationMsg
+  errorMsgPass(data: any) {
+    console.log('data msg: ', data);
+    return data;
   }
 }

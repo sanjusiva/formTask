@@ -1,0 +1,133 @@
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+  <div *ngFor="let control of myFormData?.controls">
+    <label>{{
+      control.validators.required && control.type !== "button"
+        ? control.label + "*"
+        : control.label
+    }}</label>
+    <div *ngIf="control.type === 'text'">
+      <input
+        [type]="control.type"
+        [formControlName]="control.name"
+        [value]="control.value"
+        appFieldValidation
+        [fieldInput]="statusPass(control.name)"
+        [errorMsg]="errorMsgPass(control)"
+        [name]="control.name"
+      />
+      <div>
+        <p [ngStyle]="{ color: 'red', margin: 'auto' }" [id]="control.name"></p>
+      </div>
+    </div>
+    <div *ngIf="control.type === 'dropdown'">
+      <select
+        [formControlName]="control.name"
+        (change)="onDropdownChange($event, control.name)"
+        appFieldValidation
+        [fieldInput]="statusPass(control.name)"
+        [errorMsg]="errorMsgPass(control)"
+        [name]="control.name"
+      >
+        <option *ngFor="let option of control.options" [value]="option.value">
+          {{ option.label }}
+        </option>
+      </select>
+      <div *ngFor="let control of myFormData?.additionalDetails">
+        <div *ngIf="selectedValue">
+          c:{{control|json}}
+          <div *ngFor="let ele of getAdditionalDetails(control,control.name)">
+            <div *ngIf="ele.type === 'text'">
+              <label>{{
+                ele.validators.required ? ele.label + "*" : ele.label
+              }}</label>
+              <br />
+              <input
+                [type]="ele.type"
+                [formControlName]="ele.name"
+                [value]="ele.value"
+                appFieldValidation
+                [fieldInput]="statusPass(ele.name)"
+                [errorMsg]="errorMsgPass(ele)"
+                [name]="ele.name"
+              />
+              <p
+                [ngStyle]="{ color: 'red', margin: 'auto' }"
+                [id]="ele.name"
+              ></p>
+            </div>
+            <div *ngIf="ele.type === 'dropdown'">
+              <label>{{
+                ele.validators.required ? ele.label + "*" : ele.label
+              }}</label>
+              <select
+                [formControlName]="ele.name"
+                (change)="onOthersDropdownChange($event, ele.name)"
+                appFieldValidation
+                [fieldInput]="statusPass(ele.name)"
+                [errorMsg]="errorMsgPass(ele)"
+                [name]="ele.name"
+              >
+                <option
+                  *ngFor="let option of ele.options"
+                  [value]="option.value"
+                >
+                  {{ option.label }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div *ngFor="let control of myFormData?.additionalDetails">
+        <div *ngIf="idProof">
+          i:{{control|json}}
+          <div *ngFor="let ele of getAdditionalDetails(control,idProof)">
+            <div *ngIf="ele.type === 'text'">
+              <label>{{
+                ele.validators.required ? ele.label + "*" : ele.label
+              }}</label>
+              <br />
+              <input
+                [type]="ele.type"
+                [formControlName]="ele.name"
+                [value]="ele.value"
+                appFieldValidation
+                [fieldInput]="statusPass(ele.name)"
+                [errorMsg]="errorMsgPass(ele)"
+                [name]="ele.name"
+              />
+              <p
+                [ngStyle]="{ color: 'red', margin: 'auto' }"
+                [id]="ele.name"
+              ></p>
+            </div>
+            <div *ngIf="ele.type === 'dropdown'">
+              <label>{{
+                ele.validators.required ? ele.label + "*" : ele.label
+              }}</label>
+              <select
+                [formControlName]="ele.name"
+                (change)="onOthersDropdownChange($event, ele.name)"
+                appFieldValidation
+                [fieldInput]="statusPass(ele.name)"
+                [errorMsg]="errorMsgPass(ele)"
+                [name]="ele.name"
+              >
+                <option
+                  *ngFor="let option of ele.options"
+                  [value]="option.value"
+                >
+                  {{ option.label }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div> -->
+    </div>
+    <div *ngIf="control.type === 'button'">
+      <button type="submit">Submit</button>
+    </div>
+  </div>
+</form>
+

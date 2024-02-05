@@ -16,7 +16,8 @@ import { ErrorDisplayComponent } from './error-display/error-display.component';
 import { StepperFormComponent } from './stepper-form/stepper-form.component';
 import { MatStepperModule } from '@angular/material/stepper'
 import { MatSidenavModule } from '@angular/material/sidenav'
-import {MatListModule} from '@angular/material/list'
+import {MatListModule} from '@angular/material/list';
+import { FormValidationComponent } from './form-validation/form-validation.component'
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {MatListModule} from '@angular/material/list'
     LoaderComponent,
     FieldValidationDirective,
     ErrorDisplayComponent,
-    StepperFormComponent
+    StepperFormComponent,
+    FormValidationComponent
   ],
   imports: [
     BrowserModule,

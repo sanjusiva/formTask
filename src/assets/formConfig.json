@@ -1,0 +1,134 @@
+{
+  "controls": [
+    {
+      "name": "firstName",
+      "label": "First name",
+      "value": "",
+      "type": "text",
+      "validators": {
+        "required": true,
+        "pattern": "[a-zA-Z]{3,}"
+      },
+      "validationMsg": {
+        "required": "First name is required",
+        "pattern": "FirstName should be of minimum3 characters"
+      }
+    },
+    {
+      "name": "Id Proof",
+      "label": "Select Id proof:",
+      "type": "dropdown",
+      "value": "",
+      "validators": {
+        "required": true
+      },
+      "validationMsg": {
+        "required": "Id Proof is required"
+      },
+      "options": [
+        { "label": "Select Id", "value": "" },
+        { "label": "Personal Id", "value": "Personal" },
+        { "label": "Aadhar", "value": "aadhar" },
+        { "label": "Driving Liscence", "value": "drivingLiscence" }
+      ]
+    },
+    {
+      "name": "Submit",
+      "type": "button",
+      "label": "",
+      "validators": {
+        "required": true
+      },
+      "validationMsg": {
+        "required": ""
+      }
+    }
+  ],
+  "additionalDetails": [
+    {
+      "aadhar": [
+        {
+          "name": "aadhar",
+          "label": "Aadhar number:",
+          "value": "8765432",
+          "type": "text",
+          "validators": {
+            "required": true
+          },
+          "validationMsg": {
+            "required": "Aadhar is required"
+          }
+        }
+      ]
+    },
+    {
+      "drivingLiscence": [
+        {
+          "name": "drivingLiscence",
+          "label": "Driving Liscence:",
+          "value": "9321479",
+          "type": "text",
+          "validators": {
+            "required": true
+          },
+          "validationMsg": {
+            "required": "DL is required"
+          }
+        }
+      ]
+    },
+    {
+      "Personal": [
+        {
+          "name": "Personal",
+          "label": "Personal Id:",
+          "value": "",
+          "type": "dropdown",
+          "validators": {
+            "required": true
+          },
+          "validationMsg": {
+            "required": "Personal Id is required"
+          },
+          "options": [
+            { "label": "Select Id", "value": "" },
+            { "label": "School Id", "value": "school" },
+            { "label": "College Id", "value": "clg" }
+          ]
+        }
+      ]
+    },
+    {
+      "clg": [
+        {
+          "name": "clg",
+          "label": "College Id:",
+          "value": "123",
+          "type": "text",
+          "validators": {
+            "required": true
+          },
+          "validationMsg": {
+            "required": "Clg Proof is required"
+          }
+        }
+      ]
+    },
+    {
+      "school": [
+        {
+          "name": "school",
+          "label": "School Id:",
+          "value": "11",
+          "type": "text",
+          "validators": {
+            "required": true
+          },
+          "validationMsg": {
+            "required": "School Proof is required"
+          }
+        }
+      ]
+    }
+  ]
+}

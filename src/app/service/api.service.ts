@@ -28,4 +28,7 @@ export class ApiService {
   getStepperFormField(){
     return this.http.get('/assets/stepForm.json')
   }
+  getFormField(){
+    return this.http.get('/assets/formConfig.json')
+  }
 }

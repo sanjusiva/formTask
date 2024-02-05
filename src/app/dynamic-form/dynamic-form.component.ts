@@ -13,6 +13,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { JsonForm, JsonFormConfig } from '../interface/form.interface';
+import { ApiService } from '../service/api.service';
 
 @Component({
   selector: 'app-dynamic-form',
@@ -99,6 +100,7 @@ export class DynamicFormComponent implements OnChanges, OnInit {
   }
 
   onOthersDropdownChange(event: any, name: any) {
+    console.log('2 drop: ',event.target.value,name)
     if (this.idProof !== undefined && this.idProof !== event.target.value) {
       this.myForm.removeControl(this.idProof);
     }
@@ -186,3 +188,56 @@ export class DynamicFormComponent implements OnChanges, OnInit {
     return data;
   }
 }
+
+// export class DynamicFormComponent implements OnInit{
+//   @Input() myFormData!: any;
+//   public myForm: FormGroup = this.formBuilder.group({});
+//   constructor(private service:ApiService,private formBuilder:FormBuilder){}
+
+//   ngOnInit(){
+//     this.service.getFormField().subscribe((res)=>{
+//       console.log(res)
+//       this.myFormData=res
+//       this.buildForm(this.myFormData?.controls);
+
+//     })
+//   }
+//   onDropdownChange(event:any,name:any){
+//     console.log("e: ",event," n: ",name);
+    
+//   }
+//   buildForm(controls: any[], otherId?: any) {
+//     let validatorsToAdd = [];
+//     for (const ele of controls) {
+//       if (ele.type !== 'button') {
+//         for (const [key, value] of Object.entries(ele.validators)) {
+//           console.log('check key', key, ele.name);
+
+//           switch (key) {
+//             case 'required':
+//               if (value) {
+//                 validatorsToAdd.push(Validators.required);
+//               }
+//               break;
+//             // case 'pattern':
+//             //   console.log('mt keyyyy: ', key, ele);
+//             //   if (value) {
+//             //     validatorsToAdd.push(Validators.pattern(value));
+//             //   }
+//             //   break;
+//           }
+//         }
+//         console.log('fff vali: ', ele.value, validatorsToAdd);
+//         this.myForm.addControl(
+//           ele.name,
+//           this.formBuilder.control(ele.value, validatorsToAdd)
+//         );
+//       }
+//     }
+//     console.log('fff: ', this.myForm);
+//   }
+//   onSubmit(){
+//     console.log('submit: ',this.myForm.value)
+//   }
+  
+// }

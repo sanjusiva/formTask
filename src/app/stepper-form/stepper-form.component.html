@@ -128,9 +128,11 @@
 </div> -->
 
 
-<mat-horizontal-stepper>
+{{id|json}}
+<mat-horizontal-stepper [linear]="isLinear">
   <div *ngFor="let i of id">
-    <mat-step>
+    <mat-step [stepControl]="stateName[i]">
+      {{stateName[i]}}
       <div *ngFor="let control of formConfig[i].controls">
         <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
           <label *ngIf="control.type !== 'button'">{{ control.label }}</label>
@@ -142,8 +144,11 @@
               appFieldValidation
               [fieldInput]="statusPass(control.name)"
               [errorMsg]="errorMsgPass(control)"
+              [stepperState]="stateName"
+              [stepperName]="i"
               [name]="control.name"
             />
+            {{myForm.get(control.name)?.hasError('pattern')}}-{{control.state}}
           </div>
           <div>
             <p [ngStyle]="{'color':'red','margin':'auto'}" [id]="control.name"></p>
@@ -151,13 +156,13 @@
           <div *ngIf="control.type === 'button'">
             <div [ngSwitch]="control.label">
               <div *ngSwitchCase="'Previous'">
-            <button mat-button matStepperPrevious>{{control.label}}</button>
+            <button mat-button matStepperPrevious type="button">{{control.label}}</button>
               </div>
               <div *ngSwitchCase="'Next'">
-              <button mat-button matStepperNext>{{control.label}}</button>
+              <button mat-button matStepperNext type="button">{{control.label}}</button>
               </div>
               <div *ngSwitchDefault>
-                <button type="submit" [disabled]="myForm.invalid">{{control.label}}</button>
+                <button type="submit" [disabled]="myForm.invalid" type="button" (click)="onSubmit">{{control.label}}</button>
               </div>
             </div>
           </div>
@@ -166,3 +171,5 @@
     </mat-step>
   </div>
 </mat-horizontal-stepper>
+
+{{myForm.value|json}}

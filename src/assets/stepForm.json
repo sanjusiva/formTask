@@ -18,7 +18,8 @@
       {
         "name": "Next",
         "type": "button",
-        "label": "Next"
+        "label": "Next",
+        "stateBasedOn":"firstName"
       }
     ]
   },

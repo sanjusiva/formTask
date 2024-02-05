@@ -8,6 +8,8 @@ export class FieldValidationDirective {
   @Input() fieldInput!: FormControl;
   @Input() errorMsg!: any;
   @Input() name!: any;
+  @Input() stepperState!: any;
+  @Input() stepperName!: any;
 
   constructor(private e: ElementRef) {}
 
@@ -42,11 +44,17 @@ export class FieldValidationDirective {
           } else if (status == 'INVALID') {
             console.log('invalid print: ', this.errorMsg.validationMsg[objKey]," objkey: ",objKey);
             displayError.innerHTML = this.errorMsg.validationMsg[objKey];
+            
+            this.stepperState[this.stepperName]=this.fieldInput
+            console.log("000: ",this.stepperState[this.stepperName],this.fieldInput);
+            
           } else {
             displayError.innerHTML = '';
+            this.stepperState[this.stepperName]=false
           }
         } else {
           displayError.innerHTML = '';
+          this.stepperState[this.stepperName]=false
         }
       }
     });

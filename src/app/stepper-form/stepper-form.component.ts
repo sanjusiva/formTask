@@ -32,6 +32,12 @@ constructor(private api:ApiService,private formBuilder:FormBuilder){}
         console.log('k: ',k," v: ",v);
         this.id.push(k)
         console.log(': ',this.formConfig[this.id[0]])
+        
+        if(this.formConfig[k].Address){
+          console.log('controllll: ',this.formConfig[k].Address);
+        this.buildForm(this.formConfig[k].Address,k)
+        // this.buildForm(this.formConfig[k].controls.Address[0],k)
+        }
         this.buildForm(this.formConfig[k].controls,k)
       })
       // this.buildForm(this.formConfig?.pageOne.controls);
@@ -40,6 +46,8 @@ constructor(private api:ApiService,private formBuilder:FormBuilder){}
     })
   }
   buildForm(controls: any[],pageKey?:any) {
+    console.log('control: ',controls);
+    
     let validatorsToAdd=[];
     const formGroup = this.formBuilder.group({});
     for (const ele of controls) {     
@@ -63,7 +71,7 @@ constructor(private api:ApiService,private formBuilder:FormBuilder){}
         formGroup.addControl(ele.name, this.formBuilder.control(ele.value,validatorsToAdd));
         // this.formArray.push(formGroup)
         if(pageKey){
-          // this.stateName[pageKey]=this.formArray
+          // this.stateName[pageKey]=this.myForm
           console.log("state val: ",this.stateName,pageKey);
         }
                

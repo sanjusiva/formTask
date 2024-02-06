@@ -127,12 +127,10 @@
   </div>
 </div> -->
 
-
-{{id|json}}
+<!-- {{formConfig|json}} -->
 <mat-horizontal-stepper [linear]="isLinear">
   <div *ngFor="let i of id">
     <mat-step [stepControl]="stateName[i]">
-      {{stateName[i]}}
       <div *ngFor="let control of formConfig[i].controls">
         <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
           <label *ngIf="control.type !== 'button'">{{ control.label }}</label>
@@ -148,28 +146,108 @@
               [stepperName]="i"
               [name]="control.name"
             />
-            {{myForm.get(control.name)?.hasError('pattern')}}-{{control.state}}
+            {{ myForm.get(control.name)?.hasError("pattern") }}-{{
+              control.state
+            }}
           </div>
           <div>
-            <p [ngStyle]="{'color':'red','margin':'auto'}" [id]="control.name"></p>
+            <p
+              [ngStyle]="{ color: 'red', margin: 'auto' }"
+              [id]="control.name"
+            ></p>
           </div>
           <div *ngIf="control.type === 'button'">
             <div [ngSwitch]="control.label">
               <div *ngSwitchCase="'Previous'">
-            <button mat-button matStepperPrevious type="button">{{control.label}}</button>
+                <button mat-button matStepperPrevious type="button">
+                  {{ control.label }}
+                </button>
               </div>
               <div *ngSwitchCase="'Next'">
-              <button mat-button matStepperNext type="button">{{control.label}}</button>
+                <button mat-button matStepperNext type="button">
+                  {{ control.label }}
+                </button>
               </div>
               <div *ngSwitchDefault>
-                <button type="submit" [disabled]="myForm.invalid" type="button" (click)="onSubmit">{{control.label}}</button>
+                <button
+                  type="submit"
+                  [disabled]="myForm.invalid"
+                  type="button"
+                  (click)="(onSubmit)"
+                >
+                  {{ control.label }}
+                </button>
               </div>
             </div>
           </div>
         </form>
       </div>
+      <div *ngIf="formConfig[i].Address">
+        a: {{ formConfig[i].Address[0] | json }}
+        <mat-horizontal-stepper>
+          <div *ngFor="let control of formConfig[i].Address; let last = last">
+            <mat-step
+              >{{ control.name }}
+              <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+                <label *ngIf="control.type !== 'button'">{{
+                  control.label
+                }}</label>
+                <div *ngIf="control.type === 'text'">
+                  <input
+                    [type]="control.type"
+                    [formControlName]="control.name"
+                    [value]="control.value"
+                    appFieldValidation
+                    [fieldInput]="statusPass(control.name)"
+                    [errorMsg]="errorMsgPass(control)"
+                    [stepperState]="stateName"
+                    [stepperName]="i"
+                    [name]="control.name"
+                  />
+                  {{ myForm.get(control.name)?.hasError("pattern") }}-{{
+                    control.state
+                  }}
+                </div>
+                <div>
+                  <p
+                    [ngStyle]="{ color: 'red', margin: 'auto' }"
+                    [id]="control.name"
+                  ></p>
+                </div>
+                <button
+                  mat-button
+                  matStepperPrevious
+                  type="button"
+                  *ngIf="last"
+                >
+                  Previous
+                </button>
+                <button mat-button matStepperNext type="button" *ngIf="!last">
+                  Next
+                </button>
+              </form>
+            </mat-step>
+          </div>
+        </mat-horizontal-stepper>
+      </div>
     </mat-step>
   </div>
 </mat-horizontal-stepper>
 
-{{myForm.value|json}}
+{{ myForm.value | json }}
+
+<ng-template #nestedForm>
+  <!-- <h1>jk</h1> -->
+  <mat-horizontal-stepper>
+    <mat-step>jjkk</mat-step>
+    <mat-step>ssss</mat-step>
+  </mat-horizontal-stepper>
+
+  <!-- <mat-horizontal-stepper>
+    <div *ngFor="let control of formConfig[i].Address">
+      <div *ngIf="control.type!=='button'">
+        <mat-step>{{control.name}}</mat-step>
+      </div>
+    </div>
+  </mat-horizontal-stepper> -->
+</ng-template>

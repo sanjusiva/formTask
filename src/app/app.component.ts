@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
-
+import { Component } from '@angular/core';
+import {BtsCustomLibComponent} from 'bts-custom-lib'
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

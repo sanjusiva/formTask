@@ -25,6 +25,15 @@ constructor(private api:ApiService,private formBuilder:FormBuilder){}
     console.log("change val: ",this.formConfig)
   }
   ngOnInit(){
+    // let mmyForm = this.formBuilder.group({
+    //   name: ['', [Validators.maxLength(500)]],
+    //   child: this.formBuilder.group({
+    //     id: ['', [Validators.required]],
+    //     name: ['']
+    //   })
+    // });
+    // console.log('mmmmmm: ',mmyForm);
+    
     this.api.getStepperFormField().subscribe((res)=>{
       console.log(Object.entries(res).length);
       this.formConfig=res
@@ -35,17 +44,17 @@ constructor(private api:ApiService,private formBuilder:FormBuilder){}
         
         if(this.formConfig[k].Address){
           console.log('controllll: ',this.formConfig[k].Address);
-        this.buildForm(this.formConfig[k].Address,k)
+        this.buildForm(this.formConfig[k].Address)
         // this.buildForm(this.formConfig[k].controls.Address[0],k)
         }
-        this.buildForm(this.formConfig[k].controls,k)
+        this.buildForm(this.formConfig[k].controls)
       })
       // this.buildForm(this.formConfig?.pageOne.controls);
       // this.buildForm(this.formConfig?.pageTwo.controls);
       // this.buildForm(this.formConfig?.pageThree.controls);
     })
   }
-  buildForm(controls: any[],pageKey?:any) {
+  buildForm(controls: any[]) {
     console.log('control: ',controls);
     
     let validatorsToAdd=[];
@@ -70,10 +79,10 @@ constructor(private api:ApiService,private formBuilder:FormBuilder){}
         this.myForm.addControl(ele.name, this.formBuilder.control(ele.value,validatorsToAdd));
         formGroup.addControl(ele.name, this.formBuilder.control(ele.value,validatorsToAdd));
         // this.formArray.push(formGroup)
-        if(pageKey){
-          // this.stateName[pageKey]=this.myForm
-          console.log("state val: ",this.stateName,pageKey);
-        }
+        // if(pageKey){
+        //   // this.stateName[pageKey]=this.myForm
+        //   console.log("state val: ",this.stateName,pageKey);
+        // }
                
       }
     }

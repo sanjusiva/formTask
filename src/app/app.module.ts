@@ -18,6 +18,7 @@ import { MatStepperModule } from '@angular/material/stepper'
 import { MatSidenavModule } from '@angular/material/sidenav'
 import {MatListModule} from '@angular/material/list';
 import { FormValidationComponent } from './form-validation/form-validation.component'
+import { BtsCustomLibModule } from 'bts-custom-lib';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { FormValidationComponent } from './form-validation/form-validation.compo
     MatProgressSpinnerModule,
     MatStepperModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    BtsCustomLibModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }
